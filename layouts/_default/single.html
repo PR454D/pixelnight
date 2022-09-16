@@ -1,0 +1,40 @@
+{{ define "main" }}
+<section class="section">
+  <article>
+    <div class="blog__container">
+          <h1 class="blog__title">{{ .Title }}</h1>
+            <div class="blog__details">
+              <div class="author-image-container">
+				  <img src="{{ .Author.Image }}" alt="author-image" />
+              </div>
+              <div class="blog__info">
+				  <p>By  {{ .Site.Author }} </p>  
+                <p><time>{{ .PublishDate.Format "January 2, 2006" }}</time> |
+                    {{ .ReadingTime }} {{ if eq .ReadingTime 1 }} minute {{ else }} 	                         minutes {{ end }} read 
+                 </p>
+              </div>
+              <div class="blog__categories">
+             	Blog categories 
+              </div>
+            </div>
+          <div class="content"> 
+            {{ .Content }}
+          </div>
+        </div>
+  </article>
+      <div class="blog__navigate">  
+      <div class="blog__navigateButtons">  
+        <div class="blog__navigateButtons__previous">  
+          {{ with .PrevInSection }}  
+          <button><a href="{{ .Permalink }}">&#8592; Previous Post: {{ .Title }}</a>   	           </button>  
+          {{ end }}  
+        </div>  
+        <div class="blog__navigateButtons__next">  
+          {{ with .NextInSection }}  
+          <button><a href="{{ .Permalink }}">Next Post: {{ .Title }} &#8594;</a></button>  
+        {{ end }}  
+        </div>  
+      </div>  
+  </div>
+</section>
+{{ end }}
